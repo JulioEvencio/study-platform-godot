@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://byjwftp17yo70"]
+
+[ext_resource type="Texture2D" uid="uid://4yvw6fscsqpm" path="res://assets/tile/parallax_background/layer_1.png" id="1_7bb5v"]
+[ext_resource type="Script" path="res://scripts/env/parallax_background.gd" id="1_aqnrm"]
+[ext_resource type="Texture2D" uid="uid://ddm0a3irsypcv" path="res://assets/tile/parallax_background/layer_2.png" id="2_go8u7"]
+[ext_resource type="Texture2D" uid="uid://cfaauvjh3cp0a" path="res://assets/tile/parallax_background/layer_3.png" id="3_ik27w"]
+[ext_resource type="Texture2D" uid="uid://drkj8xdyb7sha" path="res://assets/tile/parallax_background/layer_4.png" id="4_wh5o1"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource("1_aqnrm")
+layers_speed = Array[int]([20, 15, 10, 5])
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(320, 180)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer1"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_wh5o1")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(320, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer2"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_7bb5v")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(320, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer3"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_go8u7")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(320, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer4"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_ik27w")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.176471, 0.176471, 0.176471, 1)
