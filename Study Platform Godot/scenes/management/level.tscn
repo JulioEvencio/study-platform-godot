@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpwq6twiwfvgs"]
+[gd_scene load_steps=5 format=3 uid="uid://bpwq6twiwfvgs"]
 
 [ext_resource type="PackedScene" uid="uid://b73r4gbbse2l8" path="res://scenes/env/tile_map_32.tscn" id="1_t4fxl"]
 [ext_resource type="PackedScene" uid="uid://5bluhular7qn" path="res://scenes/env/tile_map_16.tscn" id="2_yevct"]
 [ext_resource type="PackedScene" uid="uid://byjwftp17yo70" path="res://scenes/env/parallax_background.tscn" id="3_ygjfg"]
+[ext_resource type="PackedScene" uid="uid://cc1neud46mtcj" path="res://scenes/player/player.tscn" id="4_j63uk"]
 
 [node name="Level" type="Node"]
 
@@ -15,3 +16,10 @@ layer_0/tile_data = PackedInt32Array(327689, 131078, 2, 262153, 131078, 0, 32768
 layer_0/tile_data = PackedInt32Array(458766, 0, 0, 458759, 0, 0, 458756, 0, 0, 458771, 0, 0, 327709, 0, 0, 327720, 0, 0, 327723, 0, 0, 327713, 0, 0, 524270, 0, 0, 524281, 0, 0, 524266, 0, 0)
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_ygjfg")]
+
+[node name="Player" parent="." instance=ExtResource("4_j63uk")]
+position = Vector2(113, 46)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.176471, 0.176471, 0.176471, 1)
