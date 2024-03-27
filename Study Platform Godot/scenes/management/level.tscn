@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpwq6twiwfvgs"]
+[gd_scene load_steps=6 format=3 uid="uid://bpwq6twiwfvgs"]
 
 [ext_resource type="PackedScene" uid="uid://b73r4gbbse2l8" path="res://scenes/env/tile_map_32.tscn" id="1_t4fxl"]
 [ext_resource type="PackedScene" uid="uid://5bluhular7qn" path="res://scenes/env/tile_map_16.tscn" id="2_yevct"]
 [ext_resource type="PackedScene" uid="uid://byjwftp17yo70" path="res://scenes/env/parallax_background.tscn" id="3_ygjfg"]
 [ext_resource type="PackedScene" uid="uid://cc1neud46mtcj" path="res://scenes/player/player.tscn" id="4_j63uk"]
+[ext_resource type="PackedScene" uid="uid://niv25gj282yh" path="res://scenes/enemies/whale.tscn" id="5_yl57t"]
 
 [node name="Level" type="Node"]
 
@@ -17,9 +18,12 @@ layer_0/tile_data = PackedInt32Array(458766, 0, 0, 458759, 0, 0, 458756, 0, 0, 4
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_ygjfg")]
 
-[node name="Player" parent="." instance=ExtResource("4_j63uk")]
-position = Vector2(113, 46)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[node name="Whale" parent="." instance=ExtResource("5_yl57t")]
+position = Vector2(235, 82)
+
+[node name="Player" parent="." instance=ExtResource("4_j63uk")]
+position = Vector2(113, 46)

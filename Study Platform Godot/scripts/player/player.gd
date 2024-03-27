@@ -9,6 +9,7 @@ const JUMP_VELOCITY : float = -300.0
 
 var direction : float = 0.0
 var is_attacking : bool = false
+var damage : int = 1
 var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready() -> void:
@@ -65,3 +66,6 @@ func _on_animation_player_animation_finished(anim_name : String) -> void:
 	match anim_name:
 		"attack":
 			is_attacking = false
+
+func _on_area_2d_body_entered(body : CharacterBody2D) -> void:
+	body.take_damage(damage)
