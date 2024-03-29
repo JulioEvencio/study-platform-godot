@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var sprite : Sprite2D
 @export var animation : AnimationPlayer
 @export var collision_attack : CollisionShape2D
+@export var ray_cast : RayCast2D
 
 const SPEED : float = 100.0
 const JUMP_VELOCITY : float = -300.0
@@ -53,6 +54,8 @@ func to_attack() -> void:
 func animate_sprites() -> void:
 	if is_attacking:
 		animation.play("attack")
+	elif ray_cast.is_colliding():
+		animation.play("wall_slide")
 	elif velocity.y > 0:
 		animation.play("fall")
 	elif velocity.y < 0:

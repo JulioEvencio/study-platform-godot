@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc1neud46mtcj"]
+[gd_scene load_steps=13 format=3 uid="uid://cc1neud46mtcj"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_1kfx7"]
 [ext_resource type="Texture2D" uid="uid://bivrj4xgaqgav" path="res://assets/player/char_red.png" id="1_1xltt"]
@@ -153,6 +153,23 @@ tracks/0/keys = {
 "values": [16, 17, 18, 19, 20, 21, 22, 23]
 }
 
+[sub_resource type="Animation" id="Animation_w3p3n"]
+resource_name = "wall_slide"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [85, 86]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ldpr"]
 _data = {
 "RESET": SubResource("Animation_yo72d"),
@@ -160,18 +177,20 @@ _data = {
 "fall": SubResource("Animation_abuil"),
 "idle": SubResource("Animation_7v1n1"),
 "jump": SubResource("Animation_hneth"),
-"run": SubResource("Animation_mpk14")
+"run": SubResource("Animation_mpk14"),
+"wall_slide": SubResource("Animation_w3p3n")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3imi3"]
 size = Vector2(33, 11)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation", "collision_attack")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation", "collision_attack", "ray_cast")]
 collision_layer = 4
 script = ExtResource("1_1kfx7")
 sprite = NodePath("Sprite2D")
 animation = NodePath("AnimationPlayer")
 collision_attack = NodePath("Area2D/CollisionShape2D")
+ray_cast = NodePath("RayCast2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_top = 0
@@ -199,6 +218,9 @@ collision_mask = 2
 position = Vector2(9.5, 9.5)
 shape = SubResource("RectangleShape2D_3imi3")
 disabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(5.1, 0)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
