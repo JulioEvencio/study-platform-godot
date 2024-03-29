@@ -11,7 +11,6 @@
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_ygjfg")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.176471, 0.176471, 0.176471, 1)
 
 [node name="TileMap32" parent="." instance=ExtResource("1_t4fxl")]
