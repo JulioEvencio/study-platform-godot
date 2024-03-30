@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cc1neud46mtcj"]
+[gd_scene load_steps=18 format=3 uid="uid://cc1neud46mtcj"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_1kfx7"]
 [ext_resource type="Texture2D" uid="uid://bivrj4xgaqgav" path="res://assets/player/char_red.png" id="1_1xltt"]
@@ -171,10 +171,27 @@ tracks/0/keys = {
 "values": [85, 86]
 }
 
+[sub_resource type="Animation" id="Animation_citui"]
+resource_name = "death"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ldpr"]
 _data = {
 "RESET": SubResource("Animation_yo72d"),
 "attack": SubResource("Animation_6vjd6"),
+"death": SubResource("Animation_citui"),
 "fall": SubResource("Animation_abuil"),
 "idle": SubResource("Animation_7v1n1"),
 "jump": SubResource("Animation_hneth"),
@@ -184,6 +201,33 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3imi3"]
 size = Vector2(33, 11)
+
+[sub_resource type="Animation" id="Animation_ncgi7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.8]
+}
 
 [sub_resource type="Animation" id="Animation_ndyt0"]
 resource_name = "light"
@@ -200,33 +244,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.3, 0.25]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.8]
-}
-
-[sub_resource type="Animation" id="Animation_ncgi7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
