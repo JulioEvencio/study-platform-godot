@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var hp : int = 10
 var immunity : bool = false
+var damage : int = 1
 
 func _ready() -> void:
 	animation_player.play("run")
@@ -31,3 +32,6 @@ func take_damage(damage : int) -> void:
 func _on_timer_timeout() -> void:
 	immunity = false
 	sprite.modulate = Color.WHITE
+
+func _on_area_2d_body_entered(body : CharacterBody2D) -> void:
+	body.take_damage(damage)

@@ -264,13 +264,14 @@ _data = {
 "light": SubResource("Animation_ndyt0")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation", "collision_attack", "ray_cast")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation", "collision_attack", "ray_cast", "timer")]
 collision_layer = 4
 script = ExtResource("1_1kfx7")
 sprite = NodePath("Sprite2D")
 animation = NodePath("AnimationPlayer")
 collision_attack = NodePath("Area2D/CollisionShape2D")
 ray_cast = NodePath("RayCast2D")
+timer = NodePath("Timer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_top = 0
@@ -313,5 +314,9 @@ libraries = {
 }
 autoplay = "light"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

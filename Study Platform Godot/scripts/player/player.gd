@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var animation : AnimationPlayer
 @export var collision_attack : CollisionShape2D
 @export var ray_cast : RayCast2D
+@export var timer : Timer
 
 const SPEED : float = 100.0
 const JUMP_VELOCITY : float = -300.0
@@ -15,10 +16,19 @@ var is_attacking : bool = false
 var damage : int = 1
 var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var immunity : bool = false
+var hp_max : int = 3
+var hp_current : int = hp_max
+
 func _ready() -> void:
 	animation.play("idle")
 
 func _physics_process(delta : float) -> void:
+	print(hp_current)
+	
+	if hp_current <= 0:
+		return
+	
 	if ray_cast.is_colliding() and not is_on_floor():
 		can_jump_wall = true
 	
@@ -86,10 +96,25 @@ func animate_sprites() -> void:
 	else:
 		animation.play("idle")
 
+func take_damage(damage : int) -> void:
+	if not immunity:
+		hp_current -= damage
+		immunity = true
+		sprite.modulate = Color.RED
+		timer.start()
+		if hp_current <= 0:
+			animation.play("death")
+
 func _on_animation_player_animation_finished(anim_name : String) -> void:
 	match anim_name:
 		"attack":
 			is_attacking = false
+		"death":
+			get_tree().reload_current_scene()
 
 func _on_area_2d_body_entered(body : CharacterBody2D) -> void:
 	body.take_damage(damage)
+
+func _on_timer_timeout():
+	immunity = false
+	sprite.modulate = Color.WHITE
