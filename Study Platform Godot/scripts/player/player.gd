@@ -24,9 +24,10 @@ func _ready() -> void:
 	animation.play("idle")
 
 func _physics_process(delta : float) -> void:
-	print(hp_current)
-	
 	if hp_current <= 0:
+		to_apply_gravity(delta)
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		move_and_slide()
 		return
 	
 	if ray_cast.is_colliding() and not is_on_floor():
