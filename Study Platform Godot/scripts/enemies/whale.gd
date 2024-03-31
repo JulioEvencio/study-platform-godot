@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+ 
 @export var animation_player : AnimationPlayer
 @export var sprite : Sprite2D
 @export var ray_cast : RayCast2D
@@ -50,9 +50,9 @@ func _physics_process(delta : float) -> void:
 		immunity = true
 		animation_player.play("dead")
 
-func take_damage(damage : int) -> void:
+func take_damage(e_damage : int) -> void:
 	if not immunity:
-		hp -= damage
+		hp -= e_damage
 		immunity = true
 		animation_player.play("hit")
 
