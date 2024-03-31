@@ -19,14 +19,14 @@ layer_0/tile_data = PackedInt32Array(327689, 131078, 2, 262153, 131078, 0, 32768
 [node name="Whale" parent="." instance=ExtResource("5_yl57t")]
 position = Vector2(235, 82)
 
-[node name="Player" parent="." instance=ExtResource("4_j63uk")]
-position = Vector2(113, 46)
-
 [node name="Whale2" parent="." instance=ExtResource("5_yl57t")]
 position = Vector2(-137, 77)
 
 [node name="Whale3" parent="." instance=ExtResource("5_yl57t")]
 position = Vector2(548, 46)
+
+[node name="Player" parent="." instance=ExtResource("4_j63uk")]
+position = Vector2(113, 46)
 
 [node name="TileMap16" parent="." instance=ExtResource("2_yevct")]
 layer_0/tile_data = PackedInt32Array(458766, 0, 0, 458759, 0, 0, 458756, 0, 0, 458771, 0, 0, 327720, 0, 0, 327723, 0, 0, 327713, 0, 0, 524270, 0, 0, 524281, 0, 0, 524266, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0)
