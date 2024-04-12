@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var collision_attack : CollisionShape2D
 @export var ray_cast : RayCast2D
 @export var timer : Timer
+@export var collision_shape : CollisionShape2D
 
 const SPEED : float = 100.0
 const JUMP_VELOCITY : float = -300.0
@@ -44,7 +45,7 @@ func _physics_process(delta : float) -> void:
 	animate_sprites()
 
 func to_apply_gravity(delta : float) -> void:
-	if not is_on_floor():
+	if not is_on_floor() and collision_shape.disabled == false:
 		if ray_cast.is_colliding():
 			velocity.y = 0
 		else:
@@ -97,10 +98,11 @@ func animate_sprites() -> void:
 	else:
 		animation.play("idle")
 
-func take_damage(damage : int) -> void:
-	if not immunity:
-		hp_current -= damage
+func take_damage(enemy_damage : int) -> void:
+	if not immunity and hp_current > 0 and collision_shape.disabled == false:
+		hp_current -= enemy_damage
 		immunity = true
+		collision_shape.set_deferred("disabled", true)
 		sprite.modulate = Color.RED
 		timer.start()
 		if hp_current <= 0:
@@ -117,5 +119,6 @@ func _on_area_2d_body_entered(body : CharacterBody2D) -> void:
 	body.take_damage(damage)
 
 func _on_timer_timeout():
+	collision_shape.set_deferred("disabled", false)
 	immunity = false
 	sprite.modulate = Color.WHITE

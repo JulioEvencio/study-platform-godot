@@ -264,7 +264,7 @@ _data = {
 "light": SubResource("Animation_ndyt0")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation", "collision_attack", "ray_cast", "timer")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation", "collision_attack", "ray_cast", "timer", "collision_shape")]
 collision_layer = 4
 script = ExtResource("1_1kfx7")
 sprite = NodePath("Sprite2D")
@@ -272,6 +272,7 @@ animation = NodePath("AnimationPlayer")
 collision_attack = NodePath("Area2D/CollisionShape2D")
 ray_cast = NodePath("RayCast2D")
 timer = NodePath("Timer")
+collision_shape = NodePath("CollisionShape2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_top = 0
