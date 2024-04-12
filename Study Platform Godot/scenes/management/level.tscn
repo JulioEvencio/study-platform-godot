@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpwq6twiwfvgs"]
+[gd_scene load_steps=8 format=3 uid="uid://bpwq6twiwfvgs"]
 
+[ext_resource type="Script" path="res://scripts/management/level.gd" id="1_ppn23"]
 [ext_resource type="PackedScene" uid="uid://b73r4gbbse2l8" path="res://scenes/env/tile_map_32.tscn" id="1_t4fxl"]
 [ext_resource type="PackedScene" uid="uid://5bluhular7qn" path="res://scenes/env/tile_map_16.tscn" id="2_yevct"]
 [ext_resource type="PackedScene" uid="uid://byjwftp17yo70" path="res://scenes/env/parallax_background.tscn" id="3_ygjfg"]
@@ -7,7 +8,20 @@
 [ext_resource type="PackedScene" uid="uid://niv25gj282yh" path="res://scenes/enemies/whale.tscn" id="5_yl57t"]
 [ext_resource type="AudioStream" uid="uid://dhq5i4xuc22uh" path="res://assets/audios/boss.wav" id="6_622db"]
 
-[node name="Level" type="Node"]
+[node name="Level" type="Node" node_paths=PackedStringArray("hp_label", "player")]
+script = ExtResource("1_ppn23")
+hp_label = NodePath("HUD/HpLabel")
+player = NodePath("Player")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HpLabel" type="Label" parent="HUD"]
+offset_right = 52.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+text = "HP: 0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_ygjfg")]
 

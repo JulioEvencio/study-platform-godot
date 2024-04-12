@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var sprite : Sprite2D
 @export var animation : AnimationPlayer
