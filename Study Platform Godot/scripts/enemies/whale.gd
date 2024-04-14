@@ -1,5 +1,9 @@
 extends CharacterBody2D
- 
+
+@export var cure_potion : PackedScene
+
+@export var level : Level
+
 @export var animation_player : AnimationPlayer
 @export var sprite : Sprite2D
 @export var ray_cast : RayCast2D
@@ -65,6 +69,9 @@ func _on_animation_player_animation_finished(anim_name : String) -> void:
 			immunity = false
 			animation_player.play("idle")
 		"dead":
+			var cure = cure_potion.instantiate()
+			cure.position = position
+			level.add_item(cure)
 			queue_free()
 
 func _on_timer_timeout():
