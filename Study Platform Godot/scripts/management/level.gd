@@ -1,10 +1,11 @@
 extends Node
 class_name Level
 
-@export var hp_label : Label
 @export var player : Player
 
 @export var cure_potion_amount : Label
+
+@export var status_scene : Status
 
 func _ready() -> void:
 	update_hp()
@@ -20,4 +21,5 @@ func add_item(item : RigidBody2D) -> void:
 	item.apply_impulse(Vector2(impulse_x, impulse_y))
 
 func update_hp() -> void:
-	hp_label.text = "HP: " + str(player.hp_current) + "/" + "" + str(player.hp_max)
+	status_scene.set_hp_max(player.hp_max)
+	status_scene.set_hp(player.hp_current)
