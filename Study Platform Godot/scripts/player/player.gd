@@ -125,3 +125,7 @@ func _on_timer_timeout():
 	collision_shape.set_deferred("disabled", false)
 	immunity = false
 	sprite.modulate = Color.WHITE
+
+func _on_item_collect_area_2d_body_entered(body : RigidBody2D) -> void:
+	body.queue_free()
+	cure_potion_amount += 1

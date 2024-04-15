@@ -7,10 +7,10 @@ class_name Level
 @export var cure_potion_amount : Label
 
 func _ready() -> void:
-	cure_potion_amount.text = "x" + str(player.cure_potion_amount)
 	update_hp()
 
 func _process(_delta : float) -> void:
+	cure_potion_amount.text = "x" + str(player.cure_potion_amount)
 	update_hp()
 
 func add_item(item : RigidBody2D) -> void:
