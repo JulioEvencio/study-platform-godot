@@ -4,7 +4,10 @@ class_name Level
 @export var hp_label : Label
 @export var player : Player
 
+@export var cure_potion_amount : Label
+
 func _ready() -> void:
+	cure_potion_amount.text = "x" + str(player.cure_potion_amount)
 	update_hp()
 
 func _process(_delta : float) -> void:

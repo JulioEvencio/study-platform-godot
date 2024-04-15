@@ -22,6 +22,8 @@ var immunity : bool = false
 var hp_max : int = 3
 var hp_current : int = hp_max
 
+var cure_potion_amount : int = 0
+
 func _ready() -> void:
 	animation.play("idle")
 
