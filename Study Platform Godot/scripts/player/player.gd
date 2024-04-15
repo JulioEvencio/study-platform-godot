@@ -46,6 +46,7 @@ func _physics_process(delta : float) -> void:
 		move_and_slide()
 	
 	animate_sprites()
+	use_cure_potion()
 
 func to_apply_gravity(delta : float) -> void:
 	if not is_on_floor() and collision_shape.disabled == false:
@@ -110,6 +111,14 @@ func take_damage(enemy_damage : int) -> void:
 		timer.start()
 		if hp_current <= 0:
 			animation.play("death")
+
+func use_cure_potion() -> void:
+	if Input.is_action_just_pressed("use_cure_potion") and cure_potion_amount > 0:
+		hp_current += 1
+		cure_potion_amount -= 1
+		
+		if hp_current > hp_max:
+			hp_current == hp_max
 
 func _on_animation_player_animation_finished(anim_name : String) -> void:
 	match anim_name:
