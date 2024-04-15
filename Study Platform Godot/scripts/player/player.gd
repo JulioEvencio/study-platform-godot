@@ -118,7 +118,7 @@ func use_cure_potion() -> void:
 		cure_potion_amount -= 1
 		
 		if hp_current > hp_max:
-			hp_current == hp_max
+			hp_current = hp_max
 
 func _on_animation_player_animation_finished(anim_name : String) -> void:
 	match anim_name:
