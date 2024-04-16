@@ -61,9 +61,7 @@ func take_damage(e_damage : int) -> void:
 		immunity = true
 		animation_player.play("hit")
 		var text : FloatText = float_text.instantiate()
-		text.set_text("-" + str(e_damage))
-		text.modulate = Color.RED
-		text.position = position
+		text.set_config("-" + str(e_damage), Color.RED, position)
 		level.call_deferred("add_child", text)
 
 func _on_area_2d_body_entered(body : CharacterBody2D) -> void:
