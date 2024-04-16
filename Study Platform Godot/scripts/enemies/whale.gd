@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var cure_potion : PackedScene
+@export var float_text : PackedScene = preload("res://scenes/hud/float_text.tscn")
 
 @export var level : Level
 
@@ -59,6 +60,11 @@ func take_damage(e_damage : int) -> void:
 		hp -= e_damage
 		immunity = true
 		animation_player.play("hit")
+		var text : FloatText = float_text.instantiate()
+		text.set_text("-" + str(e_damage))
+		text.modulate = Color.RED
+		text.position = position
+		level.call_deferred("add_child", text)
 
 func _on_area_2d_body_entered(body : CharacterBody2D) -> void:
 	body.take_damage(damage)
