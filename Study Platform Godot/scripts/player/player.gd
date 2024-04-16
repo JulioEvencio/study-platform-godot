@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
+@export var level_scene : Level
+@export var float_text_scene : PackedScene = preload("res://scenes/hud/float_text.tscn")
+
 @export var sprite : Sprite2D
 @export var animation : AnimationPlayer
 @export var collision_attack : CollisionShape2D
@@ -109,6 +112,9 @@ func take_damage(enemy_damage : int) -> void:
 		collision_shape.set_deferred("disabled", true)
 		sprite.modulate = Color.RED
 		timer.start()
+		var text : FloatText = float_text_scene.instantiate()
+		text.set_config("-" + str(enemy_damage), Color.RED, position)
+		level_scene.call_deferred("add_child", text)
 		if hp_current <= 0:
 			animation.play("death")
 

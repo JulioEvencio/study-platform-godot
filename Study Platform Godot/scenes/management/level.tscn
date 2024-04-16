@@ -64,8 +64,9 @@ level = NodePath("..")
 position = Vector2(548, 46)
 level = NodePath("..")
 
-[node name="Player" parent="." instance=ExtResource("4_j63uk")]
+[node name="Player" parent="." node_paths=PackedStringArray("level_scene") instance=ExtResource("4_j63uk")]
 position = Vector2(113, 46)
+level_scene = NodePath("..")
 
 [node name="TileMap16" parent="." instance=ExtResource("2_yevct")]
 layer_0/tile_data = PackedInt32Array(458766, 0, 0, 458759, 0, 0, 458756, 0, 0, 458771, 0, 0, 327720, 0, 0, 327723, 0, 0, 327713, 0, 0, 524270, 0, 0, 524281, 0, 0, 524266, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0)
