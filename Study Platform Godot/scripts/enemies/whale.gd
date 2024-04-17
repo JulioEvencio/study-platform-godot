@@ -1,4 +1,7 @@
 extends CharacterBody2D
+class_name Whale
+
+signal dead
 
 @export var cure_potion : PackedScene
 @export var float_text : PackedScene = preload("res://scenes/hud/float_text.tscn")
@@ -76,6 +79,7 @@ func _on_animation_player_animation_finished(anim_name : String) -> void:
 			var cure = cure_potion.instantiate()
 			cure.position = position
 			level.add_item(cure)
+			emit_signal("dead")
 			queue_free()
 
 func _on_timer_timeout():

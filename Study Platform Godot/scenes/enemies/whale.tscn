@@ -340,7 +340,7 @@ _data = {
 "run": SubResource("Animation_68mvx")
 }
 
-[node name="Whale" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "sprite", "ray_cast")]
+[node name="Whale" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "sprite", "ray_cast") groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("1_j6is1")
 cure_potion = ExtResource("2_dmel1")

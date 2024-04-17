@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5qev6dvjaolt"]
+
+[ext_resource type="Script" path="res://scripts/management/enemy_spawn.gd" id="1_5ejox"]
+
+[node name="EnemySpawn" type="Marker2D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_5ejox")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
