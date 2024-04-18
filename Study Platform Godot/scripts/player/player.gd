@@ -138,6 +138,8 @@ func _on_area_2d_body_entered(body : CharacterBody2D) -> void:
 	body.take_damage(damage)
 
 func _on_timer_timeout():
+	$CollisionShape2D.disabled = true
+	$CollisionShape2D.disabled = false
 	immunity = false
 	sprite.modulate = Color.WHITE
 
