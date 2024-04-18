@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://niv25gj282yh"]
+[gd_scene load_steps=16 format=3 uid="uid://niv25gj282yh"]
 
 [ext_resource type="Script" path="res://scripts/enemies/whale.gd" id="1_j6is1"]
 [ext_resource type="Texture2D" uid="uid://cid0i53i21g6n" path="res://assets/enemy/whale/run.png" id="1_ypyld"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://l2vcu25hb4aj" path="res://assets/enemy/whale/idle.png" id="3_4gpw0"]
 [ext_resource type="Texture2D" uid="uid://dvj6dswnrvdry" path="res://assets/enemy/whale/hit.png" id="4_v3lgv"]
 [ext_resource type="Texture2D" uid="uid://cu4wfc4ynv4ko" path="res://assets/enemy/whale/dead.png" id="5_pc3x1"]
+[ext_resource type="Texture2D" uid="uid://3d81v282588e" path="res://assets/interface/stats/bar/health_bar_background.png" id="7_dfwc4"]
+[ext_resource type="Texture2D" uid="uid://uc3akraoskdf" path="res://assets/interface/stats/bar/health_bar.png" id="8_egr51"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjx14"]
 size = Vector2(61, 36)
@@ -340,13 +342,14 @@ _data = {
 "run": SubResource("Animation_68mvx")
 }
 
-[node name="Whale" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "sprite", "ray_cast") groups=["enemy"]]
+[node name="Whale" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "sprite", "ray_cast", "hp_bar") groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("1_j6is1")
 cure_potion = ExtResource("2_dmel1")
 animation_player = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
 ray_cast = NodePath("RayCast2D")
+hp_bar = NodePath("TextureRect/TextureProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ypyld")
@@ -376,6 +379,22 @@ autostart = true
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-30, -14)
 target_position = Vector2(0, 38)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -33.0
+offset_top = -35.0
+offset_right = 31.0
+offset_bottom = -18.0
+texture = ExtResource("7_dfwc4")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="TextureRect"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 7.0
+offset_right = 60.0
+offset_bottom = 9.0
+value = 100.0
+texture_progress = ExtResource("8_egr51")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

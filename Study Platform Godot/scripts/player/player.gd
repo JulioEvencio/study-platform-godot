@@ -18,7 +18,7 @@ var can_jump_wall : bool = false
 
 var direction : float = 0.0
 var is_attacking : bool = false
-var damage : int = 10
+var damage : int = 3
 var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var immunity : bool = false

@@ -11,6 +11,7 @@ signal dead
 @export var animation_player : AnimationPlayer
 @export var sprite : Sprite2D
 @export var ray_cast : RayCast2D
+@export var hp_bar : TextureProgressBar
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -22,6 +23,7 @@ var update_move : bool = true
 var vel : int = 20
 
 func _ready() -> void:
+	hp_bar.max_value = hp
 	animation_player.play("idle")
 	sprite.flip_h = true
 	
@@ -55,12 +57,14 @@ func _physics_process(delta : float) -> void:
 	move_and_slide()
 	
 	if hp <= 0:
+		hp = 0
 		immunity = true
 		animation_player.play("dead")
 
 func take_damage(e_damage : int) -> void:
 	if not immunity:
 		hp -= e_damage
+		hp_bar.value = hp
 		immunity = true
 		animation_player.play("hit")
 		var text : FloatText = float_text.instantiate()
