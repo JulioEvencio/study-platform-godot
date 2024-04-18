@@ -1,13 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddl1jfph75tq5"]
+[gd_scene load_steps=8 format=3 uid="uid://ddl1jfph75tq5"]
 
+[ext_resource type="Script" path="res://scripts/itens/cure_potion.gd" id="1_4pkjc"]
 [ext_resource type="Texture2D" uid="uid://c44ht4s4wusmx" path="res://assets/item/consumable/health_potion.png" id="1_vbq36"]
 [ext_resource type="Texture2D" uid="uid://c1rphsuijbilx" path="res://assets/effect/light.png" id="2_322vr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7k5o"]
 size = Vector2(6, 8)
 
+[sub_resource type="Animation" id="Animation_xerng"]
+resource_name = "free"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.109804)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"self_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6gro6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k0rgv"]
+_data = {
+"RESET": SubResource("Animation_6gro6"),
+"free": SubResource("Animation_xerng")
+}
+
 [node name="CurePotion" type="RigidBody2D"]
 collision_layer = 8
+script = ExtResource("1_4pkjc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -20,3 +73,15 @@ shape = SubResource("RectangleShape2D_m7k5o")
 energy = 0.3
 texture = ExtResource("2_322vr")
 texture_scale = 0.3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k0rgv")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
