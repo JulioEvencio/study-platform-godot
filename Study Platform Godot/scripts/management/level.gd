@@ -14,6 +14,9 @@ func _process(_delta : float) -> void:
 	cure_potion_amount.text = "x" + str(player.cure_potion_amount)
 	update_hp()
 
+func add_entities(entity : CharacterBody2D) -> void:
+	call_deferred("add_child", entity)
+
 func add_item(item : RigidBody2D) -> void:
 	add_child(item)
 	var impulse_x : float = 50 if randi_range(0, 10) % 2 == 0 else -50

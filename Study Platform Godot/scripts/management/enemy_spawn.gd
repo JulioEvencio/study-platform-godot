@@ -17,9 +17,8 @@ func spawn_enemy() -> void:
 	var whale : Whale = whale_scene.instantiate()
 	whale.level = level_scene
 	whale.position = position
-	print("X: " + str(position.x) + ", Y: " + str(position.y))
 	whale.connect("dead", timer_start)
-	add_child(whale)
+	level_scene.add_entities(whale)
 
 func _on_timer_timeout() -> void:
 	spawn_enemy()

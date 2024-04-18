@@ -64,5 +64,5 @@ stream = ExtResource("6_622db")
 autoplay = true
 
 [node name="EnemySpawn" parent="." node_paths=PackedStringArray("level_scene") instance=ExtResource("10_kjtye")]
-position = Vector2(192, 53)
+position = Vector2(205, 55)
 level_scene = NodePath("..")
