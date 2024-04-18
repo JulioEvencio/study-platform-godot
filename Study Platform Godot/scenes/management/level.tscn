@@ -66,3 +66,11 @@ autoplay = true
 [node name="EnemySpawn" parent="." node_paths=PackedStringArray("level_scene") instance=ExtResource("10_kjtye")]
 position = Vector2(205, 55)
 level_scene = NodePath("..")
+
+[node name="EnemySpawn2" parent="." node_paths=PackedStringArray("level_scene") instance=ExtResource("10_kjtye")]
+position = Vector2(-240, 48)
+level_scene = NodePath("..")
+
+[node name="EnemySpawn3" parent="." node_paths=PackedStringArray("level_scene") instance=ExtResource("10_kjtye")]
+position = Vector2(613, 35)
+level_scene = NodePath("..")
