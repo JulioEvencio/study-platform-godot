@@ -9,7 +9,6 @@ class_name Player
 @export var collision_attack : CollisionShape2D
 @export var ray_cast : RayCast2D
 @export var timer : Timer
-@export var collision_shape : CollisionShape2D
 
 const SPEED : float = 100.0
 const JUMP_VELOCITY : float = -300.0
@@ -52,7 +51,7 @@ func _physics_process(delta : float) -> void:
 	use_cure_potion()
 
 func to_apply_gravity(delta : float) -> void:
-	if not is_on_floor() and collision_shape.disabled == false:
+	if not is_on_floor():
 		if ray_cast.is_colliding():
 			velocity.y = 0
 		else:
@@ -104,18 +103,20 @@ func animate_sprites() -> void:
 		animation.play("run")
 	else:
 		animation.play("idle")
+	
+	if immunity:
+		sprite.modulate = Color(1.0, 1.0, 1.0, 0.0) if sprite.modulate == Color.WHITE else Color.WHITE
 
 func take_damage(enemy_damage : int) -> void:
-	if not immunity and hp_current > 0 and collision_shape.disabled == false:
+	if not immunity and hp_current > 0:
 		hp_current -= enemy_damage
 		immunity = true
-		collision_shape.set_deferred("disabled", true)
-		sprite.modulate = Color.RED
 		timer.start()
 		var text : FloatText = float_text_scene.instantiate()
 		text.set_config("-" + str(enemy_damage), Color.RED, position)
 		level_scene.call_deferred("add_child", text)
 		if hp_current <= 0:
+			sprite.modulate = Color.WHITE
 			animation.play("death")
 
 func use_cure_potion() -> void:
@@ -137,7 +138,6 @@ func _on_area_2d_body_entered(body : CharacterBody2D) -> void:
 	body.take_damage(damage)
 
 func _on_timer_timeout():
-	collision_shape.set_deferred("disabled", false)
 	immunity = false
 	sprite.modulate = Color.WHITE
 
