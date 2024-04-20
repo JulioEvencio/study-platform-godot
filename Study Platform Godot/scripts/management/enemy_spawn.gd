@@ -7,6 +7,8 @@ class_name EnemySpawn
 
 var whale_scene : PackedScene = preload("res://scenes/enemies/whale.tscn")
 
+var can_spawn : bool = true
+
 func _ready() -> void:
 	spawn_enemy()
 
@@ -21,4 +23,12 @@ func spawn_enemy() -> void:
 	level_scene.add_entities(whale)
 
 func _on_timer_timeout() -> void:
-	spawn_enemy()
+	if can_spawn:
+		spawn_enemy()
+
+func _on_area_2d_body_entered(_body : Player) -> void:
+	can_spawn = false
+
+func _on_area_2d_body_exited(_body : Player) -> void:
+	can_spawn = true
+	timer.start()
