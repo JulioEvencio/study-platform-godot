@@ -120,7 +120,7 @@ func take_damage(enemy_damage : int) -> void:
 			animation.play("death")
 
 func use_cure_potion() -> void:
-	if Input.is_action_just_pressed("use_cure_potion") and cure_potion_amount > 0:
+	if Input.is_action_just_pressed("use_cure_potion") and cure_potion_amount > 0 and hp_current < hp_max:
 		hp_current += 1
 		cure_potion_amount -= 1
 		
