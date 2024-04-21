@@ -8,11 +8,23 @@ class_name Level
 @export var status_scene : Status
 
 func _ready() -> void:
+	Save.load_game()
+	# player.position = Save.save_data["player_position"]
+	player.position = Save.save_data.player_position
 	update_hp()
 
 func _process(_delta : float) -> void:
 	cure_potion_amount.text = "x" + str(player.cure_potion_amount)
 	update_hp()
+
+func _notification(what) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		Save.save_data.player_position = player.position
+		Save.save_game()
+		get_tree().quit()
+
+func _exit_tree() -> void:
+	print("Hi")
 
 func add_entities(entity : CharacterBody2D) -> void:
 	call_deferred("add_child", entity)
