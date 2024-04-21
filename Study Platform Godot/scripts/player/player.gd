@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal dead
+
 @export var level_scene : Level
 @export var float_text_scene : PackedScene = preload("res://scenes/hud/float_text.tscn")
 
@@ -132,7 +134,7 @@ func _on_animation_player_animation_finished(anim_name : String) -> void:
 		"attack":
 			is_attacking = false
 		"death":
-			get_tree().reload_current_scene()
+			dead.emit()
 
 func _on_area_2d_body_entered(body : CharacterBody2D) -> void:
 	body.take_damage(damage)

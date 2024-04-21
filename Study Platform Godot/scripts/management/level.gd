@@ -38,3 +38,8 @@ func add_item(item : RigidBody2D) -> void:
 func update_hp() -> void:
 	status_scene.set_hp_max(player.hp_max)
 	status_scene.set_hp(player.hp_current)
+
+func _on_player_dead() -> void:
+	Save.save_data.player_position = Vector2(0, 0)
+	Save.save_game()
+	get_tree().reload_current_scene()

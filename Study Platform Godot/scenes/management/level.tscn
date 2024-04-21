@@ -74,3 +74,5 @@ level_scene = NodePath("..")
 [node name="EnemySpawn3" parent="." node_paths=PackedStringArray("level_scene") instance=ExtResource("10_kjtye")]
 position = Vector2(613, 35)
 level_scene = NodePath("..")
+
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
