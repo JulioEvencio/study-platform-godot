@@ -125,6 +125,7 @@ func use_cure_potion() -> void:
 	if Input.is_action_just_pressed("use_cure_potion") and cure_potion_amount > 0 and hp_current < hp_max:
 		hp_current += 1
 		cure_potion_amount -= 1
+		Save.save_data.player_cure_position = cure_potion_amount
 		
 		if hp_current > hp_max:
 			hp_current = hp_max
@@ -148,3 +149,4 @@ func _on_timer_timeout():
 func _on_item_collect_area_2d_body_entered(body : RigidBody2D) -> void:
 	body.queue_free()
 	cure_potion_amount += 1
+	Save.save_data.player_cure_position = cure_potion_amount

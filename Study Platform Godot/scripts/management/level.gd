@@ -11,6 +11,7 @@ func _ready() -> void:
 	Save.load_game()
 	# player.position = Save.save_data["player_position"]
 	player.position = Save.save_data.player_position
+	player.cure_potion_amount = Save.save_data.player_cure_position
 	update_hp()
 
 func _process(_delta : float) -> void:
@@ -41,5 +42,6 @@ func update_hp() -> void:
 
 func _on_player_dead() -> void:
 	Save.save_data.player_position = Vector2(0, 0)
+	Save.save_data.player_cure_position = 0
 	Save.save_game()
 	get_tree().reload_current_scene()

@@ -3,7 +3,8 @@ extends Node
 const save_path : String = "user://save_game.dat"
 
 var save_data : Dictionary = {
-	"player_position": Vector2(0, 0)
+	"player_position": Vector2(0, 0),
+	"player_cure_position": 0
 }
 
 func save_game() -> void:
